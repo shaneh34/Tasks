@@ -28,3 +28,22 @@ c(1,2,3,4)+c(0,10,100)
 z*2+1000
 my_div
 1
+library (swirl)
+swirl()
+shaneh34
+1
+2
+swirl()
+shaneh34
+1
+2
+getwd()
+ls()
+x<-9
+ls()
+dir()
+?list.files
+args()
+args(list.files)
+old.dir<-getwd()
+dir.create("testdir")
