@@ -1,9 +1,3 @@
-Feeds<-which(beren4$event == "nap")
-beren2 <- beren
-beren4 <- beren2[order(beren2$age),]
-write.csv(beren4, "beren_new.csv", quote=F, row.names = FALSE)
-Feeds<-which(beren4$event == "nap")
-avgMilk<-mean(beren4$value[Feeds])
 setwd("C:\\Users\\harle\\Evolution\\Tasks")
 Data <- read.csv("http://jonsmitchell.com/data/beren.csv" , stringsAsFactors = F)
 Data
@@ -31,20 +25,24 @@ head(beren)
 beren2 <- beren
 beren3 <- beren2[order(beren2$age),]
 write.csv(beren3, "beren_new.csv", quote=F, row.names = FALSE)
-#start of bonus
+
+#bonus 
 Naps <- which(beren3$event == "nap")
 beren4 <- beren3[Naps,]
 head(beren4)
 beren4[5:6]
 beren4[7:8]
-#naming stuff
+
+#naming
 beren4$end_minute <- beren4$end_minute / 60
 beren4$start_minute <- beren4$start_minute / 60
 beren4$napstart <- beren4$start_hour + beren4$start_minute
 beren4$napend <- beren4$end_hour + beren4$end_minute
 beren4$naplength <- beren4$napend - beren4$napstart
 naptime <- tapply(beren4$day[Naps], beren4$age [Naps], sum)
-#graphing
-par(las=1, mar=c(5,5,1,1), mgp=c(2, 0.5 ,0), tck=-.01)
+
+#graphing 
+par(las=1, mar=c(5,5,1,1), mgp=c(2, 0.5 ,0), tck=-.01) 
 plot(as.numeric(names(naptime)), naptime, type="b", pch=16, xlab="day", ylab="naptime")
-cor.test(beren4$age, naptime)
+cor.test(beren4$age, beren4$naplength)
+#there is little correlation between the length of his naps and his age
