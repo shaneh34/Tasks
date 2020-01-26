@@ -30,5 +30,8 @@ Weigh <- which (beren3[,9] == "trait_mass")
 
 
 Hypothesis <- beren3[Weigh,]
+Regression <- nls(value ~ p1 / (1 + exp(-(p2 + p3 * age))), start=list(p1=100 ,p2=-1.096, p3=.002), data=Hypothesis, trace=TRUE)
 
+plot(,Weigh)# use hypothesis
+lines() # get x data from hypothesis, use predict(Regression) for y data
 

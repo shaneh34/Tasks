@@ -26,22 +26,21 @@ beren2 <- beren
 beren3 <- beren2[order(beren2$age),]
 write.csv(beren3, "beren_new.csv", quote=F, row.names = FALSE)
 
-#bonus 
+beren3 <- read.csv("beren_new.csv", stringsAsFactors=F)
+#Bonus
 Naps <- which(beren3$event == "nap")
 beren4 <- beren3[Naps,]
 head(beren4)
-beren4[5:6]
-beren4[7:8]
 
-#naming
+#Naming
 beren4$end_minute <- beren4$end_minute / 60
 beren4$start_minute <- beren4$start_minute / 60
 beren4$napstart <- beren4$start_hour + beren4$start_minute
 beren4$napend <- beren4$end_hour + beren4$end_minute
 beren4$naplength <- beren4$napend - beren4$napstart
-naptime <- tapply(beren4$day[Naps], beren4$age [Naps], sum)
+naptime <- tapply(beren4$naplength, beren4$age, sum, na.rm=T)
 
-#graphing 
+#Graphing
 par(las=1, mar=c(5,5,1,1), mgp=c(2, 0.5 ,0), tck=-.01) 
 plot(as.numeric(names(naptime)), naptime, type="b", pch=16, xlab="day", ylab="naptime")
 cor.test(beren4$age, beren4$naplength)
