@@ -26,12 +26,16 @@ beren2 <- beren
 beren3 <- beren2[order(beren2$age),]
 
 #Hypothesis is that as Beren ages his growth rate will decrease
+setwd("C:\\Users\\harle\\Evolution\\Tasks")
+beren3 <- read.csv("beren_new.csv", stringsAsFactors = F)
 Weigh <- which (beren3[,9] == "trait_mass")
+beren4 <- beren3[Weigh,]
+Regression <- nls(value ~ p1 / (1 + exp(-(p2 + p3 * age))), start=list(p1=100 ,p2=-1.096, p3=.002), data=beren4, trace=TRUE)
+
+head(beren4)
+plot(beren4$age, beren4$value, type="p")
+Predict <- predict(Regression)
+lines(beren4$age, Predict, type="l", col="red", lty=2)
 
 
-Hypothesis <- beren3[Weigh,]
-Regression <- nls(value ~ p1 / (1 + exp(-(p2 + p3 * age))), start=list(p1=100 ,p2=-1.096, p3=.002), data=Hypothesis, trace=TRUE)
-
-plot(,Weigh)# use hypothesis
-lines() # get x data from hypothesis, use predict(Regression) for y data
-
+?predict
