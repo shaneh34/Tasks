@@ -36,6 +36,4 @@ head(beren4)
 plot(beren4$age, beren4$value, type="p")
 Predict <- predict(Regression)
 lines(beren4$age, Predict, type="l", col="red", lty=2)
-
-
-?predict
+#Hypothesis is accepted
