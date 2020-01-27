@@ -41,10 +41,16 @@ beren4 <- beren3[Weigh,]
 
 Regression <- nls(value ~ p1 / (1 + exp(-(p2 + p3 * age))), start=list(p1=100 ,p2=-1.096, p3=.002), data=beren4, trace=TRUE)
 
-head(beren4)
-plot(beren4$age, beren4$value, type="p")
-Predict <- predict(Regression)
-lines(beren4$age, Predict, type="l", col="red", lty=2)
+
+plot(beren4$age, beren4$value, type="p", xlab="age (days)")
+abline(lm(beren4$value~beren4$age))
+
+Fake <- data.frame(age=seq(from=1,to=300,by=1), value=rep(NA, 300))
+Predict <- predict(Regression, newdata=Fake)
+lines(Fake$age, Predict, type="l", col="red", lty=2)
+
 #Hypothesis is accepted
 Predict
 Regression
+Predict [284]
+#My prediction is that Beren will weigh 8.831052 kg on his check up on Monday.
