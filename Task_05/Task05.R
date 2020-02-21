@@ -108,4 +108,3 @@ mtext(side=2, at=8, line=0, "sel.sim.")
 
 #Most student groups do not show evidence of strong selection.  The fit ratios for most of the colors are roughly the same with one the exception of one being much lower.
 #I would say that natural selection and random drift do both play a role, however randomness seems to have a greater presence than selection in the student data.
-
