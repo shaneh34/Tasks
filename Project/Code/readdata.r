@@ -8,3 +8,6 @@ test <- read.pedfile("Heppenheimer_et_al_Ecol_Evol_2018.ped", snps = "Heppenheim
 
 
 CoyoteGenotypes <- test$genotype@.Data
+CoyoteGenotypes
+head(CoyoteGenotypes)
+CoyoteGenotypes[1,]
