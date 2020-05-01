@@ -28,8 +28,4 @@ MRegression <- lm(Heterozygosity~PercentWolfDNA+Location)
 MRegression
 cor(PercentWolfDNA, Location, method= "pearson")
 plot(MRegression)
-ggscatter
 summary(MRegression)
-Loctest <- cor.test(Location, Heterozygosity, method= "pearson")
-Loctest <- lm(Location~Heterozygosity)
-plot(Loctest)
