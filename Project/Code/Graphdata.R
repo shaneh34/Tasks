@@ -5,7 +5,7 @@ Graphdata <-read.csv(file.choose(), header=TRUE)
 Graphdata
 PercentWolfDNA <- Graphdata$WOLF.DNA
 Heterozygosity <- Graphdata$RELATIVE.FST
-plot (PercentWolfDNA, Heterozygosity, xlab="Percent of Wolf DNA", ylab="Coyote Heterozygosity")
+plot (PercentWolfDNA, Heterozygosity, xlab="Amount of Wolf DNA (%)", ylab="Coyote Heterozygosity", main= "X-Y Scatter Plot")
 abline(lm(Heterozygosity~PercentWolfDNA), col="red")
 Regression <- lm(Heterozygosity~PercentWolfDNA)
 Regression
@@ -17,7 +17,19 @@ library("ggpubr")
 ggscatter(Graphdata, x = "WOLF.DNA", y = "RELATIVE.FST", 
           add = "reg.line", conf.int = TRUE, 
           cor.coef = TRUE, cor.method = "pearson",
-          xlab = "Percent Wolf DNA", ylab = "Relative Heterozygosity")
-#To do list
-#1 Run a regression analysis to look for correlation.
-#2 Create a phylogeny tree of the coyotes with the data.
+          xlab = "Amount of Wolf DNA (%)", ylab = "Relative Heterozygosity", main= "Pearson Correlation Test")
+MultipleRegression <-read.csv(file.choose(), header=TRUE)
+MultipleRegression
+PercentWolfDNA <- MultipleRegression$WOLF.DNA
+Heterozygosity <- MultipleRegression$RELATIVE.FST
+MultipleRegression$State.Province <- as.factor(MultipleRegression$State.Province)
+Location <- MultipleRegression$State.Province
+MRegression <- lm(Heterozygosity~PercentWolfDNA+Location)
+MRegression
+cor(PercentWolfDNA, Location, method= "pearson")
+plot(MRegression)
+ggscatter
+summary(MRegression)
+Loctest <- cor.test(Location, Heterozygosity, method= "pearson")
+Loctest <- lm(Location~Heterozygosity)
+plot(Loctest)
